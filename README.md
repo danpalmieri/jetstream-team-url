@@ -51,9 +51,11 @@ return [
 Just add the method useTeamInUrl() method to your routes group.
 
 ```php
-Route::useTeamInUrl()->group(function() {
-    Route::get('/home', fn () => view('home')); // example.test/teams/1/home
+Route::useTeamInUrl(function () {
+    Route::get('/dashboard', fn () => view('dashboard'));
 });
+
+Route::currentTeamRedirect('_');
 ```
 
 ## Testing
