@@ -16,7 +16,9 @@ class VerifyOrSetCurrentTeamInRoute
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(! auth()->check()) goto nextRequest;
+        if (! auth()->check()) {
+            goto nextRequest;
+        }
 
         $user = auth()->user();
         $teamAttribute = config('jetstream-team-url.url.team_attribute');
