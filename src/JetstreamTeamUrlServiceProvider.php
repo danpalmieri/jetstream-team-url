@@ -4,9 +4,19 @@ namespace DanPalmieri\JetstreamTeamUrl;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Routing\Route;
 
 class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 {
+    public function boot(): void
+    {
+        Route::macro('useTeamInUrl', function () {
+            $this->middleware(config('jetstream-team-url.middleware'));
+
+            return $this;
+        });
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
@@ -17,6 +27,7 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
         $package
             ->name('jetstream-team-url')
             ->hasConfigFile()
-            ->hasViews();
+            ->hasViews()
+        ;
     }
 }
