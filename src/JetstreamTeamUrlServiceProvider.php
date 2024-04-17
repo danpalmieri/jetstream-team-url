@@ -19,7 +19,7 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
         });
 
         Route::macro('currentTeamRedirect', function ($route) {
-            Route::get($route, function($request, $route) {
+            Route::get($route, function ($request, $route) {
                 ! session()->has('error') ?: session()->flash('error', session('error'));
 
                 $route = trim($route, '/');
