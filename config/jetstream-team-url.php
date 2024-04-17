@@ -16,8 +16,8 @@ return [
                 'key' => 'error',
                 'value' => 'You are not allowed to access this team.',
             ],
-            'abort' => [403, 'You are not allowed to access this team.'],
         ],
+        'abort' => [403, 'You are not allowed to access this team.'],
     ],
 
     'on_different_team' => [

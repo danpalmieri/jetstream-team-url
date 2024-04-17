@@ -34,7 +34,10 @@ return [
         'strategy' => 'redirect', // abort|redirect
         'redirect' => [
             'to' => '/',
-            'with' => ['error' => 'You are not allowed to access this team.'],
+            'with' => [
+                'key' => 'error',
+                'value' => 'You are not allowed to access this team.',
+            ],
         ],
         'abort' => [403, 'You are not allowed to access this team.'],
     ],
@@ -53,10 +56,20 @@ Just add the method useTeamInUrl() method to your routes group.
 ```php
 Route::useTeamInUrl(function () {
     Route::get('/dashboard', fn () => view('dashboard'));
-});
-
-Route::currentTeamRedirect('_');
+}); // example.test/teams/2352/dashboard
 ```
+
+You also get the currentTeamRedirect() method. Put this outside of the Route::useTeamInUrl() method.
+
+```php
+Route::currentTeamRedirect('_'); // example.test/_/posts/34 -> example.test/teams/2352/posts/34
+```
+
+## Behaviour
+Somethings to note about the package:
+ - The package will automatically add the team id (or other attribute) to the url if the user is logged and on a team.
+ - It will also check if the user is on the correct team. If not, it will redirect or abort.
+ - The currentTeamRedirect($char) method will replace the occurence of the character with the team id (or other attribute) in the url.
 
 ## Testing
 
