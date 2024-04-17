@@ -1,4 +1,4 @@
-# Jetstream Team URL
+# Laravel Jetstream Team URL
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/danpalmieri/jetstream-team-url.svg?style=flat-square)](https://packagist.org/packages/danpalmieri/jetstream-team-url)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/danpalmieri/jetstream-team-url/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/danpalmieri/jetstream-team-url/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
