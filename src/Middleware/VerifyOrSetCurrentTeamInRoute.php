@@ -32,7 +32,7 @@ class VerifyOrSetCurrentTeamInRoute
             $team = $user->allTeams()->where('ulid', $routeCurrentTeam)->first();
 
             if ($team) {
-                if(config('jetstream-team-url.on_different_team.strategy' == 'abort')) {
+                if (config('jetstream-team-url.on_different_team.strategy' == 'abort')) {
                     abort(config('jetstream-team-url.on_different_team.abort'));
                 } elseif (config('jetstream-team-url.on_different_team.strategy' == 'redirect')) {
                     $user->switchTeam($team);
@@ -40,9 +40,9 @@ class VerifyOrSetCurrentTeamInRoute
                 }
             }
 
-            if(config('jetstream-team-url.on_denied.strategy' == 'abort')) {
+            if (config('jetstream-team-url.on_denied.strategy' == 'abort')) {
                 abort(config('jetstream-team-url.on_denied.abort'));
-            } elseif(config('jetstream-team-url.on_denied.strategy' == 'redirect')){
+            } elseif (config('jetstream-team-url.on_denied.strategy' == 'redirect')) {
                 session()->flash(config('jetstream-team-url.on_denied.redirect.with'));
 
                 return redirect(config('jetstream-team-url.on_denied.redirect.to'));
