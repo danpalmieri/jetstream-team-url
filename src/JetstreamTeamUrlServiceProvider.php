@@ -20,7 +20,7 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 
             Route::prefix($route)->group(function () use ($route) {
                 Route::get('{any}', function () use ($route) {
-                    ! session()->has('error') ?: session()->flash('error', session('error'));
+                    ! session()->has(config('jetstream-team-url.on_denied.with.key')) ?: session()->flash(config('jetstream-team-url.on_denied.with.key'), session(config('jetstream-team-url.on_denied.with.key')));
 
                     $attribute = config('jetstream-team-url.url.team_attribute');
 
