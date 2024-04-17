@@ -20,11 +20,11 @@ class VerifyOrSetCurrentTeamInRoute
         $userCurrentTeam = $user->currentTeam->{config('jetstream-team-url.url.team_attribute')};
         $routeCurrentTeam = $request->route('currentTeam');
 
-        if (empty($routeCurrentTeam)) {
-            URL::defaults([
-                'currentTeam' => $userCurrentTeam,
-            ]);
+        URL::defaults([
+            'currentTeam' => $userCurrentTeam,
+        ]);
 
+        if (empty($routeCurrentTeam)) {
             goto nextRequest;
         }
 
@@ -33,19 +33,26 @@ class VerifyOrSetCurrentTeamInRoute
 
             if ($team) {
                 if (config('jetstream-team-url.on_different_team.strategy' == 'abort')) {
+
                     abort(config('jetstream-team-url.on_different_team.abort'));
+
                 } elseif (config('jetstream-team-url.on_different_team.strategy' == 'redirect')) {
+
                     $user->switchTeam($team);
+
                     goto nextRequest;
                 }
             }
 
-            if (config('jetstream-team-url.on_denied.strategy' == 'abort')) {
-                abort(config('jetstream-team-url.on_denied.abort'));
-            } elseif (config('jetstream-team-url.on_denied.strategy' == 'redirect')) {
-                session()->flash(config('jetstream-team-url.on_denied.redirect.with'));
+            if (config('jetstream-team-url.on_denied.strategy') == 'abort') {
 
-                return redirect(config('jetstream-team-url.on_denied.redirect.to'));
+                abort(config('jetstream-team-url.on_denied.abort'));
+
+            } elseif (config('jetstream-team-url.on_denied.strategy') == 'redirect') {
+
+                session()->flash(config('jetstream-team-url.on_denied.redirect.with.key'), config('jetstream-team-url.on_denied.redirect.with.value'));
+
+                return redirect()->route(config('jetstream-team-url.on_denied.redirect.to'));
             }
         }
 

@@ -2,6 +2,7 @@
 
 namespace DanPalmieri\JetstreamTeamUrl;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Spatie\LaravelPackageTools\Package;
@@ -11,24 +12,29 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 {
     public function bootingPackage(): void
     {
-        Route::macro('useTeamInUrl', function () {
-            $this->middleware(config('jetstream-team-url.middleware'));
-            $this->prefix(config('jetstream-team-url.url.prefix'));
-
-            return $this;
+        Route::macro('useTeamInUrl', function (callable $routes) {
+            Route::middleware(config('jetstream-team-url.middleware'))
+                ->prefix(config('jetstream-team-url.url.prefix') . '/{currentTeam}')
+                ->group($routes);
         });
 
         Route::macro('currentTeamRedirect', function ($route) {
-            Route::get($route, function ($request, $route) {
-                ! session()->has('error') ?: session()->flash('error', session('error'));
 
-                $route = trim($route, '/');
-                $redirect = str(config('jetstream-team-url.url.prefix', null).'/'.auth()->user()->currentTeam->{config('jetsream-team-url.url_team_attribute')}.'/', $request->fullUrl())->start('/');
+            Route::prefix($route)->group(function() use ($route){
+                Route::get('{any}', function () use ($route){
+                    ! session()->has('error') ?: session()->flash('error', session('error'));
 
-                return redirect(Str::replace('/'.$route.'/', $redirect));
+                    $attribute = config('jetstream-team-url.url.team_attribute');
+
+                    $redirect = str(config('jetstream-team-url.url.prefix').'/'.auth()->user()->currentTeam->{$attribute}.'/')->start('/');
+
+                    $url = str()->replace('/'.$route.'/', $redirect, request()->fullUrl());
+
+
+                    return redirect($url);
+                })->where('any', '.*');
             });
 
-            return $this;
         });
     }
 
