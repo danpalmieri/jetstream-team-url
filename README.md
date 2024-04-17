@@ -28,33 +28,32 @@ return [
         'team_attribute' => 'id', // the attribute to use for the team route
     ],
 
+    'middleware' => \DanPalmieri\JetstreamTeamUrl\Middleware\VerifyOrSetCurrentTeamInRoute::class,
+
     'on_denied' => [
         'strategy' => 'redirect', // abort|redirect
         'redirect' => [
             'to' => '/',
             'with' => ['error' => 'You are not allowed to access this team.'],
         ],
-        'abort' => [
-            'code' => 403,
-            'message' => 'You are not allowed to access this team.',
-        ],
+        'abort' => [403, 'You are not allowed to access this team.'],
     ],
 
     'on_different_team' => [
         'strategy' => 'switch', // abort|switch
-        'abort' => [
-            'code' => 403,
-            'message' => 'You are not working on the right team.',
-        ],
+        'abort' => [403, 'You are not working on the right team.'],
     ],
 ];
 ```
 
 ## Usage
 
+Just add the method useTeamInUrl() method to your routes group.
+
 ```php
-$jetstreamTeamUrl = new DanPalmieri\JetstreamTeamUrl();
-echo $jetstreamTeamUrl->echoPhrase('Hello, DanPalmieri!');
+Route::useTeamInUrl()->group(function() {
+    Route::get('/home', fn () => view('home')); // example.test/teams/1/home
+});
 ```
 
 ## Testing

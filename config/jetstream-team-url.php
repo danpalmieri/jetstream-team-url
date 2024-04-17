@@ -2,7 +2,7 @@
 
 return [
     'url' => [
-        'prefix' => 'teams', // the prefix for the team routes
+        'prefix' => 'teams', // string|null (the prefix for the team routes)
         'team_attribute' => 'id', // the attribute to use for the team route
     ],
 
