@@ -34,8 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DanPalmieri\\JetstreamTeamUrl\\": "src/",
-            "DanPalmieri\\JetstreamTeamUrl\\Database\\Factories\\": "database/factories/"
+            "DanPalmieri\\JetstreamTeamUrl\\": "src/"
         }
     },
     "autoload-dev": {
