@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/danpalmieri/jetstream-team-url.svg?style=flat-square)](https://packagist.org/packages/danpalmieri/jetstream-team-url)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/danpalmieri/jetstream-team-url/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/danpalmieri/jetstream-team-url/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 
-A package to show the user's current team in the url. You must install Laravel Jetstream with the Team feature enabled.
+A package to show the user's current team in the url. Good to generate permalinks and to auto switch when is convenient. You must install Laravel Jetstream with the Team feature enabled.
 
 ## Installation
 
@@ -67,7 +67,7 @@ Route::currentTeamRedirect('_'); // example.test/_/posts/34 -> example.test/team
 
 ## Behaviour
 Somethings to note about the package:
- - The package will automatically add the team id (or other attribute) to the url if the user is logged and on a team.
+ - The package will automatically add the team id (or other attribute) to the url if the user is logged and on a team (and you are using named routes).
  - It will also check if the user is on the correct team. If not, it will redirect or abort.
  - The currentTeamRedirect($char) method will replace the occurence of the character with the current team id (or other attribute) in the url.
 
