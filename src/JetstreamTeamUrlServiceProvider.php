@@ -4,7 +4,6 @@ namespace DanPalmieri\JetstreamTeamUrl;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use DanPalmieri\JetstreamTeamUrl\Commands\JetstreamTeamUrlCommand;
 
 class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 {
