@@ -55,8 +55,8 @@ Just add the method useTeamInUrl() method to your routes group.
 
 ```php
 Route::useTeamInUrl(function () {
-    Route::get('/dashboard', fn () => view('dashboard'));
-}); // example.test/teams/2352/dashboard
+    Route::get('/dashboard', fn () => view('dashboard')); // example.test/teams/2352/dashboard
+});
 ```
 
 You also get the currentTeamRedirect() method. Put this outside of the Route::useTeamInUrl() method.
@@ -69,7 +69,7 @@ Route::currentTeamRedirect('_'); // example.test/_/posts/34 -> example.test/team
 Somethings to note about the package:
  - The package will automatically add the team id (or other attribute) to the url if the user is logged and on a team.
  - It will also check if the user is on the correct team. If not, it will redirect or abort.
- - The currentTeamRedirect($char) method will replace the occurence of the character with the team id (or other attribute) in the url.
+ - The currentTeamRedirect($char) method will replace the occurence of the character with the current team id (or other attribute) in the url.
 
 ## Testing
 
