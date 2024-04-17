@@ -2,14 +2,14 @@
 
 namespace DanPalmieri\JetstreamTeamUrl;
 
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 {
-    public function boot(): void
+    public function bootingPackage(): void
     {
         Route::macro('useTeamInUrl', function () {
             $this->middleware(config('jetstream-team-url.middleware'));
@@ -30,6 +30,11 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 
             return $this;
         });
+    }
+
+    public function registeringPackage(): void
+    {
+        config()->set('fortify.middleware', array_merge(config('fortify.middleware'), [config('jetstream-team-url.middleware')]));
     }
 
     public function configurePackage(Package $package): void
