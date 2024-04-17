@@ -2,9 +2,9 @@
 
 namespace DanPalmieri\JetstreamTeamUrl\Tests;
 
+use DanPalmieri\JetstreamTeamUrl\JetstreamTeamUrlServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use DanPalmieri\JetstreamTeamUrl\JetstreamTeamUrlServiceProvider;
 
 class TestCase extends Orchestra
 {
