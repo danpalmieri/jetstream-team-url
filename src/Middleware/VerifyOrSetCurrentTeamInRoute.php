@@ -19,7 +19,8 @@ class VerifyOrSetCurrentTeamInRoute
         if(! auth()->check()) goto nextRequest;
 
         $user = auth()->user();
-        $userCurrentTeam = $user->currentTeam->{config('jetstream-team-url.url.team_attribute')};
+        $teamAttribute = config('jetstream-team-url.url.team_attribute');
+        $userCurrentTeam = $user->currentTeam->{$teamAttribute};
         $routeCurrentTeam = $request->route('currentTeam');
 
         URL::defaults([
