@@ -49,6 +49,7 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
     public function registeringPackage(): void
     {
         config()->set('fortify.middleware', array_merge(config('fortify.middleware'), [config('jetstream-team-url.middleware')]));
+        config()->set('jetstream.middleware', array_merge(config('jetstream.middleware'), [config('jetstream-team-url.middleware')]));
     }
 
     public function configurePackage(Package $package): void
