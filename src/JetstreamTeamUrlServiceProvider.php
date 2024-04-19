@@ -39,7 +39,7 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
 
         });
 
-        if (config('jetstream-team-url.livewire-support') && class_exists(\Livewire\Livewire::class, true)) {
+        if (config('jetstream-team-url.livewire_support') && class_exists(\Livewire\Livewire::class, true)) {
             \Livewire\Livewire::addPersistentMiddleware([
                 config('jetstream-team-url.middleware'),
             ]);
