@@ -8,6 +8,8 @@ return [
 
     'middleware' => \DanPalmieri\JetstreamTeamUrl\Middleware\VerifyOrSetCurrentTeamInRoute::class,
 
+    'livewire-support' => true, // Add a persistent middleware to Livewire to support the team in the URL
+
     'on_denied' => [
         'strategy' => 'redirect', // abort|redirect
         'redirect' => [
