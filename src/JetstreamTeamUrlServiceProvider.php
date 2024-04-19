@@ -38,6 +38,12 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
             });
 
         });
+
+        if (class_exists(\Livewire\Livewire::class, true)) {
+            \Livewire\Livewire::addPersistentMiddleware([
+                config('jetstream-team-url.middleware'),
+            ]);
+        }
     }
 
     public function registeringPackage(): void
