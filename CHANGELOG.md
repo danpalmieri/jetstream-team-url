@@ -2,6 +2,10 @@
 
 All notable changes to `jetstream-team-url` will be documented in this file.
 
+## v1.3 - 2024-05-03
+
+update
+
 ## v1.2 - 2024-04-19
 
 Support user account routes in Jetstream.
