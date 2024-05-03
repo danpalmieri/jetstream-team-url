@@ -61,7 +61,6 @@ class JetstreamTeamUrlServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('jetstream-team-url')
-            ->hasConfigFile()
-            ->hasViews();
+            ->hasConfigFile();
     }
 }
